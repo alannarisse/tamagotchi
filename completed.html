@@ -3,15 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Tamagotchi!</title>
+	<style>
+		.payAttention {display: none;}
+	</style>
 </head>
 <body>
 	<main>
 		<a href="http://members.tripod.com/~Tamagotchi_Central/instructions.html">instructions</a>
 		<div class="gotchi">happy</div>
 		<div class="value">--</div>
-		<button class="mode">mode</button><button class="action">Action</button><button class="stop">stop</button>
-	
-
+		<button class="mode">mode</button><button class="myAction">Action</button><button class="stop">stop</button>
+		<div class="payAttention">pay attention to me</div>
+		<noscript>You must have javascript enabled.</noscript>
 	</main>
 
 	<script
@@ -43,7 +46,14 @@ $('.mode').click(function(){
 		$('.value').text('one');
 	} else if  (modeVal == 'flush'){
 		$('.value').text('one poop');
+	} else if  (modeVal == 'health meter'){
+		$('.value').text('four');
+	} else if  (modeVal == 'play'){
+		$('.value').text('three');
+	} else {
+		$('.value').text('---');
 	}
+	return modeVal
 })
 
 function getRandomInt(min, max) {
@@ -54,13 +64,27 @@ function getRandomInt(min, max) {
   return randNum
 }
 
+
+function takeAction(modeVal){
+	$('.myAction').click(function(){
+		console.log(modeVal)
+		if(modeVal == 'feed'){
+			$('.payAttention').text('yum, thank you!')
+		} else if(modeVal == 'flush'){
+			$('.payAttention').text('all clean!')
+		}
+	})
+}
+
+
 var foodTime;
 
 function feedMe(randNum) {
   foodTime = setTimeout(hungryAlert, randNum);
 }
 function hungryAlert() {
-  alert("I'm hungry!");
+  $('.payAttention').css('display', 'block')
+  $('.payAttention').text('feed me!')
 }
 
 var petTime;
@@ -69,13 +93,14 @@ function petMe(randNum) {
   petTime = setTimeout(petAlert, randNum);
 }
 function petAlert() {
-  alert("Pet me!!!!");
+  $('.payAttention').css('display', 'block')
+  $('.payAttention').text('pet me!')
 }
 
-petMe(getRandomInt(1000, 30000))
+petMe(getRandomInt(1000, 3000))
 
-feedMe(getRandomInt(1000, 30000))
-
+feedMe(getRandomInt(1000, 3000))
+takeAction()
 
 </script>
 </body>

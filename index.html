@@ -28,17 +28,65 @@
 // medicine
 // attention
 // discipline
+
+
 const modeArray = ['feed', 'light', 'flush', 'health meter', 'play', 'medicine', 'attention', 'discipline']
 
+
 let counter = 0;
+
+
 $('.mode').click(function(){
 	counter = (counter + 1) % modeArray.length;
 	$('.gotchi').text(modeArray[counter])
+	console.log(counter)
 	
+	let modeVal = $('main').find('.gotchi').text();
+	console.log(modeVal)
+	if(modeVal == 'feed'){
+		$('.value').text('hungry');
+	} else if (modeVal == 'light'){
+		$('.value').text('one');
+	} else if  (modeVal == 'flush'){
+		$('.value').text('one poop');
+	} else if  (modeVal == 'health meter'){
+		$('.value').text('four');
+	} else if  (modeVal == 'play'){
+		$('.value').text('three');
+	} else {
+		$('.value').text('---');
+	}
+
 })
 
+var foodTime;
 
+function feedMe(randNum) {
+  foodTime = setTimeout(hungryAlert, randNum);
+}
+function hungryAlert() {
+  alert("I'm hungry!");
+}
 
+var poopTime;
+
+function cleanMe(randNum) {
+  poopTime = setTimeout(poopAlert, randNum);
+}
+function poopAlert() {
+  alert("Clean me!");
+}
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  let randNum =  Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+  console.log(randNum)
+  return randNum
+}
+
+feedMe(getRandomInt(1000, 7000))
+cleanMe(getRandomInt(1000, 7000))
 </script>
 </body>
 </html>
