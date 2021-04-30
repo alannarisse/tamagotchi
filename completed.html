@@ -8,6 +8,7 @@
 	</style>
 </head>
 <body>
+	<!-- I'm a comment -->
 	<main>
 		<a href="http://members.tripod.com/~Tamagotchi_Central/instructions.html">instructions</a>
 		<div class="gotchi">happy</div>
@@ -22,24 +23,32 @@
   integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
   crossorigin="anonymous"></script>
   <script>
-	// the mode button should cycle through these:
-// feed
-// light
-// flush "duck"
-// health meter (age, weight, discipline, hunger, and happiness)
-// play
-// medicine
-// attention
-// discipline
+	
+	/* the mode button should cycle through these:
+	feed
+	light
+	flush "duck"
+	health meter (age, weight, discipline, hunger, and happiness)
+	play
+	medicine
+	attention
+	discipline
+*/
+
+// array for tamagochi features
 const modeArray = ['feed', 'light', 'flush', 'health meter', 'play', 'medicine', 'attention', 'discipline']
 
 let counter = 0;
+
+// iterate through tamagochi features
 $('.mode').click(function(){
 	counter = (counter + 1) % modeArray.length;
 	$('.gotchi').text(modeArray[counter])
 	
 	let modeVal = $('main').find('.gotchi').text();
-	console.log(modeVal)
+	console.log('mode value = ' + modeVal)
+
+	// display the value of each mode
 	if(modeVal == 'feed'){
 		$('.value').text('hungry');
 	} else if (modeVal == 'light'){
@@ -56,6 +65,7 @@ $('.mode').click(function(){
 	return modeVal
 })
 
+// getting a random number to use for timing
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
